@@ -4,6 +4,7 @@
   "description": "An external authentication application for MeowDJ in Node.js",
   "keywords": [],
   "dependencies": {
+    "bcryptjs": "^2.3.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-coffee": "^1.0.0",
@@ -15,15 +16,23 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "~0.5.1",
-    "jade": "^1.11.0",
     "include-all": "~0.1.6",
+    "jade": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.0",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-linkedin": "^1.0.0",
+    "passport-steam": "^1.0.1",
+    "passport-twitter": "^1.0.4",
     "rc": "1.0.1",
     "sails": "~0.12.3",
-    "sails-disk": "~0.10.0"
+    "sails-disk": "~0.10.0",
+    "validator": "^5.2.0"
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js --port=80"
   },
   "main": "app.js",
   "repository": {
