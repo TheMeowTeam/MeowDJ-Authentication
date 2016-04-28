@@ -19,16 +19,16 @@ block body
 
     div.email-provider
       p.title Login
-      form(action='login/local', method='post')
-        input.form-input(type='text', name='email-address', placeholder='Email address')
-        input.form-input(type='password', name='password', placeholder='Password')
+      form(action='local', method='post')
+        input.form-input(type='email', name='email', placeholder='Email address', required=true)
+        input.form-input(type='password', name='password', placeholder='Password', required=true)
         input.button(type='submit', value='Login')
 
       p.title Register
-      form(action='login/local/register', method='post')
-        input.form-input(type='text', name='username', placeholder='Username')
-        input.form-input(type='text', name='email-address', placeholder='Email address')
-        input.form-input(type='password', name='password', placeholder='Password')
+      form(action='local/register', method='post')
+        input.form-input(type='text', name='username', placeholder='Username', required=true)
+        input.form-input(type='email', name='email', placeholder='Email address', required=true)
+        input.form-input(type='password', name='password', placeholder='Password', required=true)
         input.button(type='submit', value='Register')
 
     p.more-providers-caption
