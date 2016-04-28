@@ -39,10 +39,10 @@ module.exports.routes = {
    */
 
   'get /login': { controller: 'AuthController', action: 'login' },
-  
-  'get /auth/:provider': { controller: 'AuthController', action: 'provider' },
-    'get /auth/:provider/callback': { controller: 'AuthController', action: 'callback' },
-    'get /auth/:provider/:action': { controller: 'AuthController', action: 'callback' },
+
+  'get /login/:provider': { controller: 'AuthController', action: 'provider' },
+    'get /login/:provider/callback': { controller: 'AuthController', action: 'callback' },
+    'get /login/:provider/:action': { controller: 'AuthController', action: 'callback' },
 
   /***************************************************************************
   *                                                                          *

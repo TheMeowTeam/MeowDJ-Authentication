@@ -16,12 +16,10 @@ module.exports = {
    */
   index: function (req, res) {
 
-    return res.view('home', {
-      data: {
-        title: 'Home',
-        page: 'home'
-      }
-    });
+    return res.json(403, {
+      code: 403,
+      error: "Forbidden" }
+    );
   }
 };
 
