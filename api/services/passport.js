@@ -320,7 +320,7 @@ passport.loadStrategies = function () {
         , callback = strategies[key].callback;
 
       if (!callback) {
-        callback = 'auth/' + key + '/callback';
+        callback = 'login/' + key + '/callback';
       }
 
       Strategy = strategies[key].strategy;

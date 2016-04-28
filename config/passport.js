@@ -18,6 +18,10 @@ function generatePassportConfiguration(conf) {
 
   var config = Object.create(null);
 
+  config['local'] = {
+    strategy: require('passport-local').Strategy
+  };
+
   if (conf.passport == null)
     return config;
 

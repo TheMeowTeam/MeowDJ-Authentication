@@ -40,6 +40,9 @@ module.exports.routes = {
 
   'get /login': { controller: 'AuthController', action: 'login' },
 
+  'post /login/local': { controller: 'AuthController', action: 'callback' },
+  'post /login/local/:action': { controller: 'AuthController', action: 'callback' },
+
   'get /login/:provider': { controller: 'AuthController', action: 'provider' },
     'get /login/:provider/callback': { controller: 'AuthController', action: 'callback' },
     'get /login/:provider/:action': { controller: 'AuthController', action: 'callback' },
