@@ -7,6 +7,10 @@ block body
     div.catch-phrase
       p Login to Meow.DJ
 
+    if data.error
+      each error in data.error
+        p(style = "color: red;") #{error}
+
     ul.common-providers.soc
       li
         a.soc-twitter(href='login/twitter')
@@ -19,13 +23,13 @@ block body
 
     div.email-provider
       p.title Login
-      form(action='local', method='post')
+      form(action='login/local', method='post')
         input.form-input(type='email', name='email', placeholder='Email address', required=true)
         input.form-input(type='password', name='password', placeholder='Password', required=true)
         input.button(type='submit', value='Login')
 
       p.title Register
-      form(action='local/register', method='post')
+      form(action='login/local/register', method='post')
         input.form-input(type='text', name='username', placeholder='Username', required=true)
         input.form-input(type='email', name='email', placeholder='Email address', required=true)
         input.form-input(type='password', name='password', placeholder='Password', required=true)

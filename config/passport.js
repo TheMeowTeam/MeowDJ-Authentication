@@ -22,7 +22,7 @@ function generatePassportConfiguration(conf) {
     strategy: require('passport-local').Strategy
   };
 
-  if (conf.passport == null)
+  if (conf == null || conf.passport == null)
     return config;
 
   if (conf.passport['twitter'] != null) {
@@ -36,7 +36,8 @@ function generatePassportConfiguration(conf) {
       }
     };
   }
-  else if (conf.passport['facebook'] != null) {
+
+  if (conf.passport['facebook'] != null) {
     config['facebook'] = {
       name: 'Facebook',
       protocol: 'oauth2',
@@ -48,7 +49,8 @@ function generatePassportConfiguration(conf) {
       }
     };
   }
-  else if (conf.passport['google'] != null) {
+
+  if (conf.passport['google'] != null) {
     config['google'] = {
       name: 'Google',
       protocol: 'oauth2',
@@ -59,39 +61,38 @@ function generatePassportConfiguration(conf) {
       }
     };
   }
-  else if (conf.passport['linkedin'] != null) {
+
+  if (conf.passport['linkedin'] != null) {
     config['linkedin'] = {
       name: 'Linkedin',
       protocol: 'oauth',
       strategy: require('passport-linkedin').Strategy,
       options: {
         consumerKey: local.passport.linkedin.key,
-        consumerSecret: local.passport.linkedin.secret,
-        callbackURL: local.passport.linkedin.callback
+        consumerSecret: local.passport.linkedin.secret
       }
     };
   }
-  else if (conf.passport['steam'] != null) {
+
+  if (conf.passport['steam'] != null) {
     config['steam'] = {
       name: 'Steam',
       protocol: 'openid',
       strategy: require('passport-steam').Strategy,
       options: {
-        returnURL: local.passport.steam.return,
-        realm: local.passport.steam.realm,
         apiKey: local.passport.steam.key
       }
     };
   }
-  else if (conf.passport['github'] != null) {
+
+  if (conf.passport['github'] != null) {
     config['github'] = {
       name: 'GitHub',
       protocol: 'oauth2',
       strategy: require('passport-github').Strategy,
       options: {
-        clientID: local.passport.github.id,
-        clientSecret: local.passport.github.secret,
-        callbackURL: local.passport.github.callback
+        clientID: local.passport.github.key,
+        clientSecret: local.passport.github.secret
       }
     };
   }
