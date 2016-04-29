@@ -18,6 +18,13 @@ module.exports = {
    */
   login: function (req, res) {
 
+    if (!req.param('guid')) {
+      return res.json(400, {
+        code: 400,
+        error: 'Bad request'
+      });
+    }
+
     return res.view({
       data: {
         title: 'Login',
