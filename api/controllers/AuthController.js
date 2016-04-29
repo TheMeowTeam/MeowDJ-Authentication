@@ -91,12 +91,8 @@ module.exports = {
         if (err)
           return tryAgain(err);
 
-        req.session.authenticated = true;
-        req.session.user = user;
-
         if (user.tos === true) {
-          return res.redirect('/');
-          // TODO: Redirect OK to the application
+          AuthenticationService.loginCallback(req.param('guid'), 'MDR'); // TODO: Real token
         }
         else {
           return res.redirect('/tos');

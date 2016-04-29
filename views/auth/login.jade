@@ -4,44 +4,48 @@ block body
   div.container
     img.logo.center(src='/images/logo-cat.png')
 
-    div.catch-phrase
-      p Login to Meow.DJ
+    if data.redirecting
+      div.catch-phrase
+        p Redirecting...
+    else
+      div.catch-phrase
+        p Login to Meow.DJ
 
-    if data.error
-      each error in data.error
-        p(style = "color: red;") #{error}
+      if data.error
+        each error in data.error
+          p(style = "color: red;") #{error}
 
-    ul.common-providers.soc
-      li
-        a.soc-twitter(href='login/twitter')
-      li
-        a.soc-facebook(href='login/facebook')
-      li
-        a.soc-google(href='login/google')
-      li
-        a.soc-email1.soc-icon-last#login-email(href='#')
+      ul.common-providers.soc
+        li
+          a.soc-twitter(href='login/twitter')
+        li
+          a.soc-facebook(href='login/facebook')
+        li
+          a.soc-google(href='login/google')
+        li
+          a.soc-email1.soc-icon-last#login-email(href='#')
 
-    div.email-provider
-      p.title Login
-      form(action='login/local', method='post')
-        input.form-input(type='email', name='email', placeholder='Email address', required=true)
-        input.form-input(type='password', name='password', placeholder='Password', required=true)
-        input.button(type='submit', value='Login')
+      div.email-provider
+        p.title Login
+        form(action='login/local', method='post')
+          input.form-input(type='email', name='email', placeholder='Email address', required=true)
+          input.form-input(type='password', name='password', placeholder='Password', required=true)
+          input.button(type='submit', value='Login')
 
-      p.title Register
-      form(action='login/local/register', method='post')
-        input.form-input(type='text', name='username', placeholder='Username', required=true)
-        input.form-input(type='email', name='email', placeholder='Email address', required=true)
-        input.form-input(type='password', name='password', placeholder='Password', required=true)
-        input.button(type='submit', value='Register')
+        p.title Register
+        form(action='login/local/register', method='post')
+          input.form-input(type='text', name='username', placeholder='Username', required=true)
+          input.form-input(type='email', name='email', placeholder='Email address', required=true)
+          input.form-input(type='password', name='password', placeholder='Password', required=true)
+          input.button(type='submit', value='Register')
 
-    p.more-providers-caption
-      span.triangle
-      |Show more
-      span.triangle.last
+      p.more-providers-caption
+        span.triangle
+        |Show more
+        span.triangle.last
 
-    ul.more-providers.soc
-      li
-        a.soc-steam(href='login/steam')
-      li
-        a.soc-github(href='login/github')
+      ul.more-providers.soc
+        li
+          a.soc-steam(href='login/steam')
+        li
+          a.soc-github(href='login/github')

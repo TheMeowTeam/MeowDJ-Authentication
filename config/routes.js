@@ -34,6 +34,7 @@ module.exports.routes = {
 
   '/': { controller: 'HomeController', action: 'index' },
 
+  
   /**
    *  Authentication
    */
