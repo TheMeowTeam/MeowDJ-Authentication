@@ -25,6 +25,8 @@ module.exports = {
       });
     }
 
+    req.session.guid = req.param('guid');
+
     return res.view({
       data: {
         title: 'Login',
@@ -80,18 +82,19 @@ module.exports = {
 
       switch (action) {
         case 'register':
-          res.redirect('/login');
+          res.redirect('/login?guid=' + req.session.guid);
           break;
 
         default:
-          res.redirect('/login');
+          res.redirect('/login?guid=' + req.session.guid);
       }
     }
 
     passport.callback(req, res, function (err, user, challenges) {
 
-      if (err || !user)
+      if (err || !user) {
         return tryAgain(challenges);
+      }
 
       req.login(user, function (err) {
 
@@ -99,9 +102,11 @@ module.exports = {
           return tryAgain(err);
 
         if (user.tos === true) {
+          sails.log.warn('TOS: true');
           AuthenticationService.loginCallback(req.param('guid'), 'MDR'); // TODO: Real token
         }
         else {
+          sails.log.warn('TOS: false');
           return res.redirect('/tos');
         }
       });

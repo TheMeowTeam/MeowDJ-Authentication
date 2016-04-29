@@ -137,8 +137,6 @@ passport.connect = function (req, query, profile, next) {
               return next(err);
             }
 
-            var response = ActivationService.sendActivationEmail(user);
-
             if (response.status != 'ok') {
               return next(response.error);
             }
@@ -208,7 +206,7 @@ passport.endpoint = function (req, res) {
   // If a provider doesn't exist for this endpoint, send the user back to the
   // login page
   if (!strategies.hasOwnProperty(provider)) {
-    return res.redirect('/login');
+    return res.redirect('/login?guid=' + req.session.guid);
   }
 
   // Attach scope if it has been set in the config
@@ -234,7 +232,7 @@ passport.endpoint = function (req, res) {
  */
 passport.callback = function (req, res, next) {
   var provider = req.param('provider', 'local')
-    , action   = req.param('action');
+    , action   = req.param('action', 'connect');
 
   // Passport.js wasn't really built for local user registration, but it's nice
   // having it tied into everything else.

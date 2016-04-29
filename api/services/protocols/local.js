@@ -79,12 +79,6 @@ exports.register = function (req, res, next) {
         });
       }
 
-      var response = ActivationService.sendActivationEmail(user);
-
-      if (response.status != 'ok') {
-        return next(response.error);
-      }
-
       next(null, user);
     });
   });
