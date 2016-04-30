@@ -97,9 +97,7 @@ module.exports = {
       }
 
       req.login(user, function (err) {
-
-        sails.log.warn('Login');
-
+        
         if (err)
           return tryAgain(err);
 

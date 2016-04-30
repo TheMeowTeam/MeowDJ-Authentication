@@ -111,6 +111,7 @@ passport.connect = function (req, query, profile, next) {
     provider   : provider
   , identifier : query.identifier.toString()
   }, function (err, passport) {
+
     if (err) {
       return next(err);
     }
@@ -121,8 +122,9 @@ passport.connect = function (req, query, profile, next) {
       // Action:   Create a new user and assign them a passport.
       if (!passport) {
         User.create(user, function (err, user) {
+
           if (err) {
-            
+
             if (err.code === 'E_VALIDATION') {
               if (err.invalidAttributes.email) {
                 req.flash('error', 'Error.Passport.Email.Exists');
@@ -138,6 +140,7 @@ passport.connect = function (req, query, profile, next) {
           query.user = user.id;
 
           Passport.create(query, function (err, passport) {
+
             // If a passport wasn't created, bail out
             if (err) {
               return next(err);
@@ -158,6 +161,7 @@ passport.connect = function (req, query, profile, next) {
 
         // Save any updates to the Passport before moving on
         passport.save(function (err, passport) {
+
           if (err) {
             return next(err);
           }
@@ -174,6 +178,7 @@ passport.connect = function (req, query, profile, next) {
         query.user = req.user.id;
 
         Passport.create(query, function (err, passport) {
+
           // If a passport wasn't created, bail out
           if (err) {
             return next(err);
