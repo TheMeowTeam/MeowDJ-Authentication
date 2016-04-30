@@ -29,7 +29,7 @@ function generatePassportConfiguration(conf) {
     config['twitter'] = {
       name: 'Twitter',
       protocol: 'oauth',
-      strategy: require('passport-twitter').Strategy,
+      strategy: require('passport-twitter-email').Strategy,
       options: {
         consumerKey: local.passport.twitter.key,
         consumerSecret: local.passport.twitter.secret

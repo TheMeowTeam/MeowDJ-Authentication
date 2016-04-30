@@ -84,6 +84,11 @@ passport.connect = function (req, query, profile, next) {
   if (profile.hasOwnProperty('emails')) {
     user.email = profile.emails[0].value;
   }
+  else if (profile.hasOwnProperty('_json') && profile._json.hasOwnProperty('email')) {
+    // Twitter
+    user.email = profile._json.email;
+  }
+
   // If the profile object contains a username, add it to the user.
   if (profile.hasOwnProperty('username')) {
     user.username = profile.username;
@@ -117,6 +122,7 @@ passport.connect = function (req, query, profile, next) {
       if (!passport) {
         User.create(user, function (err, user) {
           if (err) {
+            
             if (err.code === 'E_VALIDATION') {
               if (err.invalidAttributes.email) {
                 req.flash('error', 'Error.Passport.Email.Exists');
@@ -135,10 +141,6 @@ passport.connect = function (req, query, profile, next) {
             // If a passport wasn't created, bail out
             if (err) {
               return next(err);
-            }
-
-            if (response.status != 'ok') {
-              return next(response.error);
             }
 
             next(err, user);
@@ -232,7 +234,7 @@ passport.endpoint = function (req, res) {
  */
 passport.callback = function (req, res, next) {
   var provider = req.param('provider', 'local')
-    , action   = req.param('action', 'connect');
+    , action   = req.param('action');
 
   // Passport.js wasn't really built for local user registration, but it's nice
   // having it tied into everything else.

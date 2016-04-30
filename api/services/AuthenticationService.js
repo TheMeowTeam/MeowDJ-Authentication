@@ -19,10 +19,7 @@ function loginCallback(guid, token) {
     }
   };
 
-  var request = http.request(options, function (response) {
-
-    // TODO: Close the popup
-  });
+  var request = http.request(options, function (response) {});
 
   request.write('post=' + data + '&is=specified&like=this');
   request.end();
