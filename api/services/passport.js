@@ -160,14 +160,14 @@ passport.connect = function (req, query, profile, next) {
         }
 
         // Save any updates to the Passport before moving on
-        passport.save(function (err, passport) {
+        passport.save(function (err) {
 
           if (err) {
             return next(err);
           }
-
+          
           // Fetch the user associated with the Passport
-          User.findOne(passport.user.id, next);
+          User.findOne(passport.user, next);
         });
       }
     } else {
@@ -213,7 +213,7 @@ passport.endpoint = function (req, res) {
   // If a provider doesn't exist for this endpoint, send the user back to the
   // login page
   if (!strategies.hasOwnProperty(provider)) {
-    return res.redirect('/login?guid=' + req.session.guid);
+    return res.redirect('/login?guid=' + req.session.guid + '&host=' + req.session.host);
   }
 
   // Attach scope if it has been set in the config

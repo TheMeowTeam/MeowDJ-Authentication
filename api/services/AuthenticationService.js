@@ -1,28 +1,18 @@
-var http = require('http');
+var request = require('request');
 
-function loginCallback(guid, token) {
+function loginCallback(req, guid, token) {
+  
   var data = {
     guid: guid,
     token: token
   };
 
-  var port = sails.config.applicationHost.split(':').lenght == 2 ? sails.config.applicationHost.split(':')[1] : 80;
+  request.post(req.session.host + '/login/callback', { formData: data }, function (err, res, body) {
 
-  var options = {
-    host: sails.config.applicationHost,
-    port: port,
-    path: '/login/callback',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': data.length
+    if (err) {
+      sails.log.warn(err);
     }
-  };
-
-  var request = http.request(options, function (response) {});
-
-  request.write('post=' + data + '&is=specified&like=this');
-  request.end();
+  });
 }
 
 module.exports = {

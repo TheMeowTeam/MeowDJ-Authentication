@@ -18,7 +18,7 @@ module.exports = {
    */
   login: function (req, res) {
 
-    if (!req.param('guid')) {
+    if (!req.param('guid') || !req.param('host')) {
       return res.json(400, {
         code: 400,
         error: 'Bad request'
@@ -26,6 +26,7 @@ module.exports = {
     }
 
     req.session.guid = req.param('guid');
+    req.session.host = req.param('host');
 
     return res.view({
       data: {
@@ -82,11 +83,11 @@ module.exports = {
 
       switch (action) {
         case 'register':
-          res.redirect('/login?guid=' + req.session.guid);
+          res.redirect('/login?guid=' + req.session.guid + '&host=' + req.session.host);
           break;
 
         default:
-          res.redirect('/login?guid=' + req.session.guid);
+          res.redirect('/login?guid=' + req.session.guid + '&host=' + req.session.host);
       }
     }
 
@@ -97,18 +98,17 @@ module.exports = {
       }
 
       req.login(user, function (err) {
-        
+
         if (err)
           return tryAgain(err);
 
         req.session.authenticated = true;
 
         if (user.tos === true) {
-          sails.log.warn('TOS: true');
-          AuthenticationService.loginCallback(req.param('guid'), 'MDR'); // TODO: Real token
+          AuthenticationService.loginCallback(req, req.session.guid, 'MDR'); // TODO: Real token
+          return res.json({message: 'Redirecting...'})
         }
         else {
-          sails.log.warn('TOS: false');
           return res.redirect('/tos');
         }
       });
