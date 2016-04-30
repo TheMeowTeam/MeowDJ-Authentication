@@ -6,9 +6,11 @@ function loginCallback(guid, token) {
     token: token
   };
 
+  var port = sails.config.applicationHost.split(':').lenght == 2 ? sails.config.applicationHost.split(':')[1] : 80;
+
   var options = {
-    host: 'localhost',
-    port: '1337',
+    host: sails.config.applicationHost,
+    port: port,
     path: '/login/callback',
     method: 'POST',
     headers: {
