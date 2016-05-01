@@ -3,7 +3,7 @@
 mkdir assets-tmp
 cd assets-tmp
 
-git clone https://github.com/assets.git .
+git clone https://github.com/MeowDJ/assets.git .
 
 rm -Rf .git
 rm LICENSE.txt
