@@ -7,9 +7,15 @@
   background-color: @buttons-primary-background;
   border: none;
   border-bottom: solid 3px @buttons-primary-border;
-  transition: border-bottom 0.3s;
+  position: relative;
+
+  &.red {
+    background-color: @buttons-red-background;
+    border-bottom: solid 3px @buttons-red-border;
+  }
 }
 
-.button:hover {
-  border-bottom: solid 3px @buttons-primary-border-hover;
+.button:active {
+  outline: none;
+  border-bottom: none;
 }
