@@ -40,6 +40,7 @@ module.exports.routes = {
    */
 
   'get /login': { controller: 'AuthController', action: 'login' },
+  'post /login/transaction': {controller: 'AuthController', action: 'generateTransaction'},
 
   'post /login/local': { controller: 'AuthController', action: 'callback' },
   'post /login/local/:action': { controller: 'AuthController', action: 'callback' },

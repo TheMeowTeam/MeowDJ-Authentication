@@ -114,5 +114,20 @@ module.exports = {
         }
       });
     });
+  },
+
+  generateTransaction: function (req, res)
+  {
+    if (!req.param('guid'))
+      return res.json(400, {
+        code: 400,
+        message: 'Bad request'
+      });
+
+    AuthCache.create({guid: req.param(guid), transactionID: AuthentificationService.generateID()}, function (err, auth) {
+      if (err || !auth)
+        return res.json(503, {code: 503, message: 'Internal Server Error'})
+      return res.json({status: "ok"})
+    })
   }
 };
