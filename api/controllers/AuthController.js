@@ -103,9 +103,10 @@ module.exports = {
           return tryAgain(err);
 
         req.session.authenticated = true;
+        req.session.user = user;
 
         if (user.tos === true) {
-          AuthenticationService.loginCallback(req, req.session.guid, 'MDR'); // TODO: Real token
+          AuthenticationService.loginCallback(req, req.session.guid, user);
           return res.json({message: 'Redirecting...'})
         }
         else {
