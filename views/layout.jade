@@ -3,7 +3,7 @@ head
   title #{data.title} • MeowDJ
   meta(name='viewport',content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
 
-  link(rel='stylesheet', href='/styles/importer.css')
+  link(rel='stylesheet', href='/app/styles/importer.css')
 
   script.
     var local = !{JSON.stringify(data)}
@@ -11,7 +11,7 @@ head
   script(src='https://code.jquery.com/jquery-2.2.0.min.js')
   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
   block preInit
-  script(src='/js/application.js')
+  script(src='/app/js/application.js')
 
 body(id = data.page)
   div.container-fluid
