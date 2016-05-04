@@ -10,7 +10,6 @@
 module.exports = {
 
 
-
   /**
    * `AuthController.login()`
    *
@@ -18,7 +17,7 @@ module.exports = {
    */
   login: function (req, res) {
 
-    if (!req.param('guid') || !req.param('host')) {
+    if (!req.param('guid') || req.param('guid') == "undefined" || !req.param('host') || req.param('guid') == "host") {
       return res.json(400, {
         code: 400,
         error: 'Bad request'
@@ -50,7 +49,6 @@ module.exports = {
   },
 
 
-
   /**
    * `AuthController.callback()`
    *
@@ -68,7 +66,7 @@ module.exports = {
    */
   callback: function (req, res) {
 
-    function tryAgain (err) {
+    function tryAgain(err) {
 
       var flashError = req.flash('error')[0];
 
@@ -116,15 +114,17 @@ module.exports = {
     });
   },
 
-  generateTransaction: function (req, res)
-  {
+  generateTransaction: function (req, res) {
     if (!req.param('guid'))
       return res.json(400, {
         code: 400,
         message: 'Bad request'
       });
 
-    AuthCache.create({guid: req.param(guid), transactionID: AuthentificationService.generateID()}, function (err, auth) {
+    AuthCache.create({
+      guid: req.param(guid),
+      transactionID: AuthentificationService.generateID()
+    }, function (err, auth) {
       if (err || !auth)
         return res.json(503, {code: 503, message: 'Internal Server Error'})
       return res.json({status: "ok"})

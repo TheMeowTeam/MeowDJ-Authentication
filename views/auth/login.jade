@@ -28,7 +28,7 @@ block body
       div.email-provider
         p.title Login
         form(action='login/local', method='post')
-          input.form-input(type='email', name='email', placeholder='Email address', required=true)
+          input.form-input(type='email', name='identifier', placeholder='Username or Email', required=true)
           input.form-input(type='password', name='password', placeholder='Password', required=true)
           input.button(type='submit', value='Login')
 
