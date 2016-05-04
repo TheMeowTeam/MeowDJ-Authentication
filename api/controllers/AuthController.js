@@ -17,7 +17,7 @@ module.exports = {
    */
   login: function (req, res) {
 
-    if (!req.param('guid') || req.param('guid') == "undefined" || !req.param('host') || req.param('guid') == "host") {
+    if (!req.param('guid') || req.param('guid') == "undefined" || !req.param('host') || req.param('host') == "undefined") {
       return res.json(400, {
         code: 400,
         error: 'Bad request'
