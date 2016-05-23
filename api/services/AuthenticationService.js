@@ -13,7 +13,7 @@ function loginCallback(req, guid, user) {
 
   var data = {
     guid: guid,
-    userId: user.id,
+    authenticationUserID: user.id,
     userUsername: user.username,
     userRank: user.rank,
     transactionID: generateID()

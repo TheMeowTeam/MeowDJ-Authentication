@@ -83,9 +83,9 @@ module.exports = {
         case 'register':
           res.redirect('/login?guid=' + req.session.guid + '&host=' + req.session.host);
           break;
-
         default:
           res.redirect('/login?guid=' + req.session.guid + '&host=' + req.session.host);
+          break;
       }
     }
 
